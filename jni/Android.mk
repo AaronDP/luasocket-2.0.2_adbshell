@@ -15,6 +15,7 @@
 # ==========================================================
 ##== LUASOCKET ==
 LOCAL_PATH 		:= $(call my-dir)
+include 		$(CLEAR_VARS)
 LUAROOT			:= /data/local/tmp/lib/lua/5.1
 LUAETC			:= /data/local/tmp/etc
 LUALIB			:= /data/local/tmp/lib
@@ -53,71 +54,75 @@ include 		$(BUILD_SHARED_LIBRARY)
 
 
 all:
-	-mkdir /data
-	-mkdir /data/local
-	-mkdir /data/local/tmp
-	-mkdir $(LUAETC)
-	-mkdir $(LUAETC)/luasocket
-	-mkdir $(LUAETC)/luasocket/doc
-	-mkdir $(LUAETC)/luasocket/samples
-	-mkdir $(LUAETC)/luasocket/test
-	-mkdir /data/local/tmp/lib
-	-mkdir /data/local/tmp/lib/lua
-	-mkdir $(LUAROOT)
-	-mkdir $(LUAROOT)/socket
-	-mkdir $(LUAROOT)/mime
-	cp socket.lua $(LUAROOT)
-	cp ltn12.lua $(LUAROOT)
-	cp ftp.lua $(LUAROOT)/socket
-	cp http.lua $(LUAROOT)/socket
-	cp mime.lua $(LUAROOT)/socket
-	cp mime.lua $(LUAROOT)
-	cp smtp.lua $(LUAROOT)/socket
-	cp tp.lua $(LUAROOT)/socket
-	cp url.lua $(LUAROOT)/socket
-	-ln -s ../libs/armeabi-v7a/libluasocket.so $(LUAROOT)/socket/core.so
-	-ln -s ../libs/armeabi-v7a/libmime.so $(LUAROOT)/mime/core.so
-	cp ../etc/README $(LUAETC)/luasocket
-	cp ../etc/b64.lua $(LUAETC)/luasocket
-	cp ../etc/check-links.lua $(LUAETC)/luasocket
-	cp ../etc/check-memory.lua $(LUAETC)/luasocket
-	cp ../etc/dict.lua $(LUAETC)/luasocket
-	cp ../etc/dispatch.lua $(LUAETC)/luasocket
-	cp ../etc/eol.lua $(LUAETC)/luasocket
-	cp ../etc/forward.lua $(LUAETC)/luasocket
-	cp ../etc/get.lua $(LUAETC)/luasocket
-	cp ../etc/lp.lua $(LUAETC)/luasocket
-	cp ../etc/qp.lua $(LUAETC)/luasocket
-	cp ../etc/tftp.lua $(LUAETC)/luasocket
-	cp ../doc/dns.html $(LUAETC)/luasocket/doc
-	cp ../doc/ftp.html $(LUAETC)/luasocket/doc
-	cp ../doc/http.html $(LUAETC)/luasocket/doc
-	cp ../doc/index.html $(LUAETC)/luasocket/doc
-	cp ../doc/installation.html $(LUAETC)/luasocket/doc
-	cp ../doc/introduction.html $(LUAETC)/luasocket/doc
-	cp ../doc/ltn12.html $(LUAETC)/luasocket/doc
-	cp ../doc/luasocket.png $(LUAETC)/luasocket/doc
-	cp ../doc/mime.html $(LUAETC)/luasocket/doc
-	cp ../doc/reference.css $(LUAETC)/luasocket/doc
-	cp ../doc/reference.html $(LUAETC)/luasocket/doc
-	cp ../doc/smtp.html $(LUAETC)/luasocket/doc
-	cp ../doc/socket.html $(LUAETC)/luasocket/doc
-	cp ../doc/tcp.html $(LUAETC)/luasocket/doc
-	cp ../doc/udp.html $(LUAETC)/luasocket/doc
-	cp ../doc/url.html $(LUAETC)/luasocket/doc
-	cp ../samples/cddb.lua $(LUAETC)/luasocket/samples
-	cp ../samples/daytimeclnt.lua $(LUAETC)/luasocket/samples
-	cp ../samples/echoclnt.lua $(LUAETC)/luasocket/samples
-	cp ../samples/echosrvr.lua $(LUAETC)/luasocket/samples
-	cp ../samples/listener.lua $(LUAETC)/luasocket/samples
-	cp ../samples/lpr.lua $(LUAETC)/luasocket/samples
-	cp ../samples/README $(LUAETC)/luasocket/samples
-	cp ../samples/talker.lua $(LUAETC)/luasocket/samples
-	cp ../samples/tinyirc.lua $(LUAETC)/luasocket/samples
-	cp ../test/README $(LUAETC)/luasocket/test
-	cp ../test/testclnt.lua $(LUAETC)/luasocket/test
-	cp ../test/testsrvr.lua $(LUAETC)/luasocket/test
-	cp ../test/testsupport.lua $(LUAETC)/luasocket/test
-	cp ../LICENSE $(LUAETC)/luasocket
-	cp ../NEW $(LUAETC)/luasocket
-	cp ../README $(LUAETC)/luasocket
+	-mkdir /data 2>/dev/null
+	-mkdir /data/local 2>/dev/null
+	-mkdir /data/local/tmp 2>/dev/null
+	-mkdir $(LUAETC) 2>/dev/null
+	-mkdir $(LUAETC)/luasocket 2>/dev/null
+	-mkdir $(LUAETC)/luasocket/doc 2>/dev/null
+	-mkdir $(LUAETC)/luasocket/samples 2>/dev/null
+	-mkdir $(LUAETC)/luasocket/test 2>/dev/null
+	-mkdir /data/local/tmp/lib 2>/dev/null
+	-mkdir /data/local/tmp/lib/lua 2>/dev/null
+	-mkdir $(LUAROOT) 2>/dev/null
+	-mkdir $(LUAROOT)/socket 2>/dev/null
+	-mkdir $(LUAROOT)/mime 2>/dev/null
+	cp $(LOCAL_PATH)/socket.lua $(LUAROOT)
+	cp $(LOCAL_PATH)/ltn12.lua $(LUAROOT)
+	cp $(LOCAL_PATH)/ftp.lua $(LUAROOT)/socket
+	cp $(LOCAL_PATH)/http.lua $(LUAROOT)/socket
+	cp $(LOCAL_PATH)/mime.lua $(LUAROOT)/socket
+	cp $(LOCAL_PATH)/mime.lua $(LUAROOT)
+	cp $(LOCAL_PATH)/smtp.lua $(LUAROOT)/socket
+	cp $(LOCAL_PATH)/tp.lua $(LUAROOT)/socket
+	cp $(LOCAL_PATH)/url.lua $(LUAROOT)/socket
+	rm $(LUAROOT)/socket/core.so 2>/dev/null
+	cp $(LOCAL_PATH)/../libs/armeabi-v7a/libluasocket.so $(LUAROOT)/socket/core.so
+	rm $(LUALIB)/libluasocket.so 2>/dev/null
+	cp $(LOCAL_PATH)/../libs/armeabi-v7a/libluasocket.so $(LUALIB)/libluasocket.so
+	rm $(LUAROOT)/mime/core.so 2>/dev/null
+	cp $(LOCAL_PATH)/../libs/armeabi-v7a/libmime.so $(LUAROOT)/mime/core.so
+	cp $(LOCAL_PATH)/../etc/README $(LUAETC)/luasocket
+	cp $(LOCAL_PATH)/../etc/b64.lua $(LUAETC)/luasocket
+	cp $(LOCAL_PATH)/../etc/check-links.lua $(LUAETC)/luasocket
+	cp $(LOCAL_PATH)/../etc/check-memory.lua $(LUAETC)/luasocket
+	cp $(LOCAL_PATH)/../etc/dict.lua $(LUAETC)/luasocket
+	cp $(LOCAL_PATH)/../etc/dispatch.lua $(LUAETC)/luasocket
+	cp $(LOCAL_PATH)/../etc/eol.lua $(LUAETC)/luasocket
+	cp $(LOCAL_PATH)/../etc/forward.lua $(LUAETC)/luasocket
+	cp $(LOCAL_PATH)/../etc/get.lua $(LUAETC)/luasocket
+	cp $(LOCAL_PATH)/../etc/lp.lua $(LUAETC)/luasocket
+	cp $(LOCAL_PATH)/../etc/qp.lua $(LUAETC)/luasocket
+	cp $(LOCAL_PATH)/../etc/tftp.lua $(LUAETC)/luasocket
+	cp $(LOCAL_PATH)/../doc/dns.html $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/ftp.html $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/http.html $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/index.html $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/installation.html $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/introduction.html $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/ltn12.html $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/luasocket.png $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/mime.html $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/reference.css $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/reference.html $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/smtp.html $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/socket.html $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/tcp.html $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/udp.html $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../doc/url.html $(LUAETC)/luasocket/doc
+	cp $(LOCAL_PATH)/../samples/cddb.lua $(LUAETC)/luasocket/samples
+	cp $(LOCAL_PATH)/../samples/daytimeclnt.lua $(LUAETC)/luasocket/samples
+	cp $(LOCAL_PATH)/../samples/echoclnt.lua $(LUAETC)/luasocket/samples
+	cp $(LOCAL_PATH)/../samples/echosrvr.lua $(LUAETC)/luasocket/samples
+	cp $(LOCAL_PATH)/../samples/listener.lua $(LUAETC)/luasocket/samples
+	cp $(LOCAL_PATH)/../samples/lpr.lua $(LUAETC)/luasocket/samples
+	cp $(LOCAL_PATH)/../samples/README $(LUAETC)/luasocket/samples
+	cp $(LOCAL_PATH)/../samples/talker.lua $(LUAETC)/luasocket/samples
+	cp $(LOCAL_PATH)/../samples/tinyirc.lua $(LUAETC)/luasocket/samples
+	cp $(LOCAL_PATH)/../test/README $(LUAETC)/luasocket/test
+	cp $(LOCAL_PATH)/../test/testclnt.lua $(LUAETC)/luasocket/test
+	cp $(LOCAL_PATH)/../test/testsrvr.lua $(LUAETC)/luasocket/test
+	cp $(LOCAL_PATH)/../test/testsupport.lua $(LUAETC)/luasocket/test
+	cp $(LOCAL_PATH)/../LICENSE $(LUAETC)/luasocket
+	cp $(LOCAL_PATH)/../NEW $(LUAETC)/luasocket
+	cp $(LOCAL_PATH)/../README $(LUAETC)/luasocket
