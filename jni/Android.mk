@@ -34,7 +34,7 @@ LOCAL_SRC_FILES 	:= auxiliar.c  buffer.c  except.c  \
 			inet.c  io.c luasocket.c  mime.c  \
 			options.c  select.c  tcp.c  timeout.c  \
 			udp.c unix.c  usocket.c 
-LOCAL_C_INCLUDES	+= $(LOCAL_PATH) $(LOCAL_PATH)/../lua $(LUAINC)
+LOCAL_C_INCLUDES	+= $(LOCAL_PATH) $(LUAINC)
 LOCAL_LDLIBS		:= -O -shared -fpic
 LOCAL_CFLAGS 		:= -pedantic -Wall -O2 -fpic -DLUASOCKET_DEBUG 
 LOCAL_SHARED_LIBRARIES	:= luajit
@@ -45,8 +45,9 @@ include 		$(CLEAR_VARS)
 LOCAL_ARM_MODE 		:= arm   
 LOCAL_MODULE		:= mime
 LOCAL_SRC_FILES 	:= mime.c 
-LOCAL_C_INCLUDES	+= $(LOCAL_PATH) $(LOCAL_PATH)/../lua $(LUAINC)
-LOCAL_LDLIBS		:= -O -shared -fpic
+LOCAL_SRC_FILES 	+= $(LUALIB)/libluajit.so
+LOCAL_C_INCLUDES	+= $(LOCAL_PATH) $(LUAINC)
+LOCAL_LDLIBS		:= -O -shared -fpic -L$(LUALIB)/libluajit.so
 LOCAL_CFLAGS 		:= -pedantic -Wall -O2 -fpic -DLUASOCKET_DEBUG 
 LOCAL_SHARED_LIBRARIES	:= luajit
 #LOCAL_LDLIBS 		:= -L$(LOCAL_PATH)/../libs/armeabi 
