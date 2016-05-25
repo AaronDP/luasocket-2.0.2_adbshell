@@ -77,11 +77,11 @@ all:
 	cp $(LOCAL_PATH)/smtp.lua $(LUAROOT)/socket
 	cp $(LOCAL_PATH)/tp.lua $(LUAROOT)/socket
 	cp $(LOCAL_PATH)/url.lua $(LUAROOT)/socket
-	rm $(LUAROOT)/socket/core.so 2>/dev/null
+	-rm $(LUAROOT)/socket/core.so 2>/dev/null
 	cp $(LOCAL_PATH)/../libs/armeabi-v7a/libluasocket.so $(LUAROOT)/socket/core.so
-	rm $(LUALIB)/libluasocket.so 2>/dev/null
+	-rm $(LUALIB)/libluasocket.so 2>/dev/null
 	cp $(LOCAL_PATH)/../libs/armeabi-v7a/libluasocket.so $(LUALIB)/libluasocket.so
-	rm $(LUAROOT)/mime/core.so 2>/dev/null
+	-rm $(LUAROOT)/mime/core.so 2>/dev/null
 	cp $(LOCAL_PATH)/../libs/armeabi-v7a/libmime.so $(LUAROOT)/mime/core.so
 	cp $(LOCAL_PATH)/../etc/README $(LUAETC)/luasocket
 	cp $(LOCAL_PATH)/../etc/b64.lua $(LUAETC)/luasocket
